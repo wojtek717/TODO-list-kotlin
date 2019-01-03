@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.todo_row.view.*
 
 class TodoListAdapter : RecyclerView.Adapter<customVievHolder>(){
 
-    val todoTitles = listOf<String>("Make a dinner", "Do homework", "Kill teacher", "Fap")
+    val todoTitles = listOf<String>("Adding elements to list", "Make a dinner", "Do homework", "Kill teacher", "Fap")
 
     override fun getItemCount(): Int {
         return todoTitles.size

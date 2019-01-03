@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 
 const val EXTRA_MESSAGE = "com.example.todolist.MESSAGE"
@@ -18,6 +19,12 @@ class MainActivity : AppCompatActivity() {
         recyclerViev_todolist_main.layoutManager = LinearLayoutManager(this)
 
         recyclerViev_todolist_main.adapter = TodoListAdapter()
+
+        val message = intent.getStringExtra(EXTRA_MESSAGE)
+
+        val textView = findViewById<TextView>(R.id.TextView_test).apply {
+            text = message
+        }
     }
 
     fun createNewItem(view: View){

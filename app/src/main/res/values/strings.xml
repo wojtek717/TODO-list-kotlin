@@ -2,4 +2,5 @@
     <string name="app_name">TodoList</string>
     <string name="addItem_title">Title</string>
     <string name="additem_description">Description</string>
+    <string name="button_send">Send</string>
 </resources>
