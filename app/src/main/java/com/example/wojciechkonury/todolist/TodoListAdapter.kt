@@ -1,5 +1,6 @@
 package com.example.wojciechkonury.todolist
 
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +26,7 @@ class TodoListAdapter(val todoItems: List<TodoItem>) : RecyclerView.Adapter<cust
         p0.viev.todo_title.text = todoItems.get(p1).title
         p0.viev.todo_description.text = todoItems.get(p1).description
     }
+
 }
 
 class customVievHolder(val viev: View) : RecyclerView.ViewHolder(viev){

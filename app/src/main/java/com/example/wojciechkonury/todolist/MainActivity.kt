@@ -7,6 +7,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
+import android.widget.DatePicker
+import android.widget.LinearLayout
+import java.util.*
 
 const val EXTRA_MESSAGE = "com.example.todolist.MESSAGE"
 
@@ -21,6 +24,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+
+
+
+
+
 
         recyclerViev_todolist_main.layoutManager = LinearLayoutManager(this)
 
