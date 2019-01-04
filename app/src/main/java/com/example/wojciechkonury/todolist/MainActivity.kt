@@ -12,18 +12,33 @@ const val EXTRA_MESSAGE = "com.example.todolist.MESSAGE"
 
 class MainActivity : AppCompatActivity() {
 
+    var todo_item: TodoItem = TodoItem("Zakupy", "Kupic jablka")
+
+    companion object todo_items{
+        var items = mutableListOf<TodoItem>()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         recyclerViev_todolist_main.layoutManager = LinearLayoutManager(this)
 
-        recyclerViev_todolist_main.adapter = TodoListAdapter()
+        recyclerViev_todolist_main.adapter = TodoListAdapter(todo_items.items)
 
-        val message = intent.getStringExtra(EXTRA_MESSAGE)
+        // Test przesylanie dwoj stringow z innego activity
 
-        val textView = findViewById<TextView>(R.id.TextView_test).apply {
-            text = message
+        val message_todo_title = intent.getStringExtra(EXTRA_TODO_TITLE)
+        val message_todo_description = intent.getStringExtra(EXTRA_TODO_DESCRIPTION)
+
+        if(message_todo_description != null && message_todo_title != null)
+        {
+            if(message_todo_title.length > 0 && message_todo_description.length > 0)
+            {
+                todo_item = TodoItem(message_todo_title, message_todo_description)
+
+                todo_items.items.add(todo_item)
+            }
         }
     }
 

@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.todo_row.view.*
 
-class TodoListAdapter : RecyclerView.Adapter<customVievHolder>(){
+class TodoListAdapter(val todoItems: List<TodoItem>) : RecyclerView.Adapter<customVievHolder>(){
 
     val todoTitles = listOf<String>("Adding elements to list", "Make a dinner", "Do homework", "Kill teacher", "Fap")
 
     override fun getItemCount(): Int {
-        return todoTitles.size
+        return todoItems.size
     }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): customVievHolder {
@@ -22,7 +22,8 @@ class TodoListAdapter : RecyclerView.Adapter<customVievHolder>(){
     }
 
     override fun onBindViewHolder(p0: customVievHolder, p1: Int) {
-        p0.viev.todo_title.text = todoTitles.get(p1)
+        p0.viev.todo_title.text = todoItems.get(p1).title
+        p0.viev.todo_description.text = todoItems.get(p1).description
     }
 }
 
