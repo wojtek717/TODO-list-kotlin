@@ -51,4 +51,19 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="16dp" app:layout_constraintBaseline_toBaselineOf="@+id/button_date"
             app:layout_constraintEnd_toStartOf="@+id/button_date" android:layout_marginEnd="16dp"/>
+    <Button
+            android:text="Select time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_time" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/button_date" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_time" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/button_time"
+            app:layout_constraintBaseline_toBaselineOf="@+id/button_time"/>
 </android.support.constraint.ConstraintLayout>

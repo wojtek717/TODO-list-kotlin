@@ -1,6 +1,7 @@
 package com.example.wojciechkonury.todolist
 
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -23,12 +24,25 @@ class CreateNewItemActivity : AppCompatActivity() {
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val minutes = calendar.get(Calendar.MINUTE)
+
+        // when button clicked show DatePickerDialog
         button_date.setOnClickListener{
             val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener{
-                view, mYear, mMonth, mDay -> textView_date.setText(" " + mDay + "/" + (mMonth + 1) + "/" + mYear)
+                view, mYear, mMonth, mDay ->
+                textView_date.setText(" " + mDay + "/" + (mMonth + 1) + "/" + mYear) //set textView
             }, year, month, day)
 
-            dpd.show()
+            dpd.show() //show dialog
+        }
+
+        button_time.setOnClickListener{
+            val tpd = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+                textView_time.setText("" + hourOfDay + " : " + minute)
+            }, hour, minutes, true)
+
+            tpd.show()
         }
     }
 
