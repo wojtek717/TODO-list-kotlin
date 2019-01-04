@@ -25,37 +25,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
-
-
-
-
-
+        // Recycler View
         recyclerViev_todolist_main.layoutManager = LinearLayoutManager(this)
+        recyclerViev_todolist_main.adapter = TodoListAdapter(todo_items.items) // Set adapter
 
-        recyclerViev_todolist_main.adapter = TodoListAdapter(todo_items.items)
 
-        // Test przesylanie dwoj stringow z innego activity
-
+        // Receive messages from other activity
         val message_todo_title = intent.getStringExtra(EXTRA_TODO_TITLE)
         val message_todo_description = intent.getStringExtra(EXTRA_TODO_DESCRIPTION)
 
+        // Chceck if object's parametrs are valid
         if(message_todo_description != null && message_todo_title != null)
         {
             if(message_todo_title.length > 0 && message_todo_description.length > 0)
             {
-                todo_item = TodoItem(message_todo_title, message_todo_description)
+                todo_item = TodoItem(message_todo_title, message_todo_description) //create object
 
-                todo_items.items.add(todo_item)
+                todo_items.items.add(todo_item) //add object to list
             }
         }
     }
 
+    // Start new activity when button is clicked
     fun createNewItem(view: View){
-        val intent = Intent(this, CreateNewItemActivity::class.java).apply {
-
-        }
+        val intent = Intent(this, CreateNewItemActivity::class.java).apply {}
 
         startActivity(intent)
     }
