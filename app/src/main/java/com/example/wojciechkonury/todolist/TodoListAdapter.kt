@@ -25,6 +25,8 @@ class TodoListAdapter(val todoItems: List<TodoItem>) : RecyclerView.Adapter<cust
     override fun onBindViewHolder(p0: customVievHolder, p1: Int) {
         p0.viev.todo_title.text = todoItems.get(p1).title
         p0.viev.todo_description.text = todoItems.get(p1).description
+        p0.viev.todo_date.text = "Date: " + todoItems.get(p1).day + "/" + todoItems.get(p1).month + "/" + todoItems.get(p1).year
+        p0.viev.todo_time.text = "Time: " + todoItems.get(p1).hour + ":" + todoItems.get(p1).minute
     }
 
 }

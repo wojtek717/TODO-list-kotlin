@@ -34,12 +34,24 @@ class MainActivity : AppCompatActivity() {
         val message_todo_title = intent.getStringExtra(EXTRA_TODO_TITLE)
         val message_todo_description = intent.getStringExtra(EXTRA_TODO_DESCRIPTION)
 
+        val message_todo_year = intent.getIntExtra(EXTRA_TODO_YEAR, 0)
+        val message_todo_month = intent.getIntExtra(EXTRA_TODO_MONTH, 0)
+        val message_todo_day = intent.getIntExtra(EXTRA_TODO_DAY, 0)
+        val message_todo_hour = intent.getIntExtra(EXTRA_TODO_HOUR, 0)
+        val message_todo_minute = intent.getIntExtra(EXTRA_TODO_MINUTE, 0)
+
         // Chceck if object's parametrs are valid
         if(message_todo_description != null && message_todo_title != null)
         {
             if(message_todo_title.length > 0 && message_todo_description.length > 0)
             {
-                todo_item = TodoItem(message_todo_title, message_todo_description) //create object
+                todo_item = TodoItem(message_todo_title,
+                    message_todo_description,
+                    message_todo_year,
+                    message_todo_month,
+                    message_todo_day,
+                    message_todo_hour,
+                    message_todo_minute) //create object
 
                 todo_items.items.add(todo_item) //add object to list
             }
