@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.todo_row.view.*
 
-const val EXTRA_DETAILS_TITLE = "EXTRA_DETAILS_TITLE"
 
 class TodoListAdapter(val todoItems: List<TodoItem>) : RecyclerView.Adapter<customVievHolder>(){
 
@@ -27,14 +26,14 @@ class TodoListAdapter(val todoItems: List<TodoItem>) : RecyclerView.Adapter<cust
 
     override fun onBindViewHolder(p0: customVievHolder, p1: Int) {
 
-        val todoItem = todoItems.get(p1)
+        val todoItem = todoItems.get(p1) //Get current object from list
 
         p0.viev.todo_title.text = todoItem.title
         p0.viev.todo_description.text = todoItem.description
         p0.viev.todo_date.text = "Date: " + todoItem.day + "/" + todoItem.month + "/" + todoItem.year
         p0.viev.todo_time.text = "Time: " + todoItem.hour + ":" + todoItem.minute
 
-        p0.todoItem = todoItem
+        p0.todoItem = todoItem //Set clicked object
     }
 
 }
@@ -43,7 +42,15 @@ class customVievHolder(val viev: View, var todoItem: TodoItem? = null) : Recycle
     init {
         viev.setOnClickListener {
             val intent = Intent(viev.context, TodoDetailsActivity::class.java).apply{
-                putExtra(EXTRA_DETAILS_TITLE, todoItem?.title)
+                putExtra(EXTRA_TODO_TITLE, todoItem?.title)
+                putExtra(EXTRA_TODO_DESCRIPTION, todoItem?.description)
+
+                putExtra(EXTRA_TODO_YEAR, todoItem?.year)
+                putExtra(EXTRA_TODO_MONTH, todoItem?.month)
+                putExtra(EXTRA_TODO_DAY, todoItem?.day)
+                putExtra(EXTRA_TODO_HOUR, todoItem?.hour)
+                putExtra(EXTRA_TODO_MINUTE, todoItem?.minute)
+
             }
 
             viev.context.startActivity(intent)
