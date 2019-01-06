@@ -6,6 +6,8 @@ import kotlinx.android.synthetic.main.activity_todo_details.*
 
 class TodoDetailsActivity : AppCompatActivity() {
 
+    var gIndex: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_todo_details)
@@ -20,6 +22,10 @@ class TodoDetailsActivity : AppCompatActivity() {
         val hour = intent.getIntExtra(EXTRA_TODO_HOUR, 0)
         val minute = intent.getIntExtra(EXTRA_TODO_MINUTE, 0)
 
+        val index = intent.getIntExtra(EXTRA_TODO_INDEX, 0)
+        gIndex = index
+
+
         supportActionBar?.title = title
 
         details_title.text = title
@@ -28,7 +34,20 @@ class TodoDetailsActivity : AppCompatActivity() {
         details_date.text = "Date: " + day + "/" + month + "/" + year
         details_time.text = "Time: " + hour + ":" + minute
 
+        details_switch_done.isChecked = MainActivity.todo_items.items[gIndex].done
+
+        details_switch_done.setOnClickListener {
+            if(details_switch_done.isChecked == true){
+                MainActivity.todo_items.items[gIndex].done = true
+            }else{
+                MainActivity.todo_items.items[gIndex].done = false
+            }
+        }
+
     }
 
+    fun changeStatus(){
+
+    }
 
 }

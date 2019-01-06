@@ -1,12 +1,18 @@
 package com.example.wojciechkonury.todolist
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.todo_row.view.*
+import android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
+
+
+
+const val EXTRA_TODO_INDEX = "EXTRA_TODO_INDEX"
 
 
 class TodoListAdapter(val todoItems: List<TodoItem>) : RecyclerView.Adapter<customVievHolder>(){
@@ -29,7 +35,12 @@ class TodoListAdapter(val todoItems: List<TodoItem>) : RecyclerView.Adapter<cust
         val todoItem = todoItems.get(p1) //Get current object from list
 
         p0.viev.todo_title.text = todoItem.title
-        p0.viev.todo_description.text = todoItem.description
+        if(todoItem.done == true)
+        {
+            p0.viev.todo_title.setPaintFlags(p0.viev.todo_title.getPaintFlags() or STRIKE_THRU_TEXT_FLAG)
+        }
+
+        //p0.viev.todo_description.text = todoItem.description
         p0.viev.todo_date.text = "Date: " + todoItem.day + "/" + todoItem.month + "/" + todoItem.year
         p0.viev.todo_time.text = "Time: " + todoItem.hour + ":" + todoItem.minute
 
@@ -50,6 +61,8 @@ class customVievHolder(val viev: View, var todoItem: TodoItem? = null) : Recycle
                 putExtra(EXTRA_TODO_DAY, todoItem?.day)
                 putExtra(EXTRA_TODO_HOUR, todoItem?.hour)
                 putExtra(EXTRA_TODO_MINUTE, todoItem?.minute)
+
+                putExtra(EXTRA_TODO_INDEX, todoItem?.index)
 
             }
 

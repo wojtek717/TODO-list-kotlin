@@ -13,6 +13,7 @@ import java.util.*
 
 const val EXTRA_MESSAGE = "com.example.todolist.MESSAGE"
 
+
 class MainActivity : AppCompatActivity() {
 
     var todo_item: TodoItem = TodoItem("Zakupy", "Kupic jablka")
@@ -54,6 +55,7 @@ class MainActivity : AppCompatActivity() {
                     message_todo_minute) //create object
 
                 todo_items.items.add(todo_item) //add object to list
+                todo_items.items[todo_items.items.size -1].index = todo_items.items.size -1
             }
         }
     }

@@ -20,4 +20,7 @@ class TodoItem(Tit: String, Desc: String,
 
     var hour = Hour
     var minute = Minute
+
+    var index: Int = 0
+    var done: Boolean = false
 }
