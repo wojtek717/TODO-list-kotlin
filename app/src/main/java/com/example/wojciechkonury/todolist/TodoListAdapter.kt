@@ -1,11 +1,14 @@
 package com.example.wojciechkonury.todolist
 
+import android.content.Intent
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.todo_row.view.*
+
+const val EXTRA_DETAILS_TITLE = "EXTRA_DETAILS_TITLE"
 
 class TodoListAdapter(val todoItems: List<TodoItem>) : RecyclerView.Adapter<customVievHolder>(){
 
@@ -23,14 +26,27 @@ class TodoListAdapter(val todoItems: List<TodoItem>) : RecyclerView.Adapter<cust
     }
 
     override fun onBindViewHolder(p0: customVievHolder, p1: Int) {
-        p0.viev.todo_title.text = todoItems.get(p1).title
-        p0.viev.todo_description.text = todoItems.get(p1).description
-        p0.viev.todo_date.text = "Date: " + todoItems.get(p1).day + "/" + todoItems.get(p1).month + "/" + todoItems.get(p1).year
-        p0.viev.todo_time.text = "Time: " + todoItems.get(p1).hour + ":" + todoItems.get(p1).minute
+
+        val todoItem = todoItems.get(p1)
+
+        p0.viev.todo_title.text = todoItem.title
+        p0.viev.todo_description.text = todoItem.description
+        p0.viev.todo_date.text = "Date: " + todoItem.day + "/" + todoItem.month + "/" + todoItem.year
+        p0.viev.todo_time.text = "Time: " + todoItem.hour + ":" + todoItem.minute
+
+        p0.todoItem = todoItem
     }
 
 }
 
-class customVievHolder(val viev: View) : RecyclerView.ViewHolder(viev){
+class customVievHolder(val viev: View, var todoItem: TodoItem? = null) : RecyclerView.ViewHolder(viev){
+    init {
+        viev.setOnClickListener {
+            val intent = Intent(viev.context, TodoDetailsActivity::class.java).apply{
+                putExtra(EXTRA_DETAILS_TITLE, todoItem?.title)
+            }
 
+            viev.context.startActivity(intent)
+        }
+    }
 }
