@@ -1,7 +1,9 @@
 package com.example.wojciechkonury.todolist
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import kotlinx.android.synthetic.main.activity_todo_details.*
 
 class TodoDetailsActivity : AppCompatActivity() {
@@ -36,6 +38,8 @@ class TodoDetailsActivity : AppCompatActivity() {
 
         details_switch_done.isChecked = MainActivity.todo_items.items[gIndex].done
 
+        textView_ID.text = gIndex.toString()
+
         details_switch_done.setOnClickListener {
             if(details_switch_done.isChecked == true){
                 MainActivity.todo_items.items[gIndex].done = true
@@ -44,10 +48,15 @@ class TodoDetailsActivity : AppCompatActivity() {
             }
         }
 
+        button_Delete.setOnClickListener {
+            MainActivity.todo_items.items.removeAt(gIndex)
+
+                val intent = Intent(this, MainActivity::class.java).apply {}
+                startActivity(intent)
+
+        }
+
     }
 
-    fun changeStatus(){
-
-    }
 
 }

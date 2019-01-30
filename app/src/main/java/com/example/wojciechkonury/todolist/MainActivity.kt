@@ -16,7 +16,7 @@ const val EXTRA_MESSAGE = "com.example.todolist.MESSAGE"
 
 class MainActivity : AppCompatActivity() {
 
-    var todo_item: TodoItem = TodoItem("Zakupy", "Kupic jablka")
+    //var todo_item: TodoItem = TodoItem("Zakupy", "Kupic jablka")
 
     companion object todo_items{
         var items = mutableListOf<TodoItem>()
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         {
             if(message_todo_title.length > 0 && message_todo_description.length > 0)
             {
-                todo_item = TodoItem(message_todo_title,
+                var todo_item: TodoItem = TodoItem(message_todo_title,
                     message_todo_description,
                     message_todo_year,
                     message_todo_month,
@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
                     message_todo_minute) //create object
 
                 todo_items.items.add(todo_item) //add object to list
-                todo_items.items[todo_items.items.size -1].index = todo_items.items.size -1
             }
         }
     }

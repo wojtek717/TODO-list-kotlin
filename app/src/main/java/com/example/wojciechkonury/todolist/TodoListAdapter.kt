@@ -17,7 +17,6 @@ const val EXTRA_TODO_INDEX = "EXTRA_TODO_INDEX"
 
 class TodoListAdapter(val todoItems: List<TodoItem>) : RecyclerView.Adapter<customVievHolder>(){
 
-    val todoTitles = listOf<String>("Adding elements to list", "Make a dinner", "Do homework", "Kill teacher", "Fap")
 
     override fun getItemCount(): Int {
         return todoItems.size
@@ -35,8 +34,7 @@ class TodoListAdapter(val todoItems: List<TodoItem>) : RecyclerView.Adapter<cust
         val todoItem = todoItems.get(p1) //Get current object from list
 
         p0.viev.todo_title.text = todoItem.title
-        if(todoItem.done == true)
-        {
+        if(todoItem.done == true) {
             p0.viev.todo_title.setPaintFlags(p0.viev.todo_title.getPaintFlags() or STRIKE_THRU_TEXT_FLAG)
         }
 
@@ -45,6 +43,7 @@ class TodoListAdapter(val todoItems: List<TodoItem>) : RecyclerView.Adapter<cust
         p0.viev.todo_time.text = "Time: " + todoItem.hour + ":" + todoItem.minute
 
         p0.todoItem = todoItem //Set clicked object
+        todoItem.index = p1;
     }
 
 }
