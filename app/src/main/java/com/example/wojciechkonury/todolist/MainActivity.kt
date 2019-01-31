@@ -9,6 +9,9 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import android.widget.DatePicker
 import android.widget.LinearLayout
+import com.google.gson.GsonBuilder
+import okhttp3.*
+import java.io.IOException
 import java.util.*
 
 const val EXTRA_MESSAGE = "com.example.todolist.MESSAGE"
@@ -30,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         recyclerViev_todolist_main.layoutManager = LinearLayoutManager(this)
         recyclerViev_todolist_main.adapter = TodoListAdapter(todo_items.items) // Set adapter
 
+        fetchJSON()
 
         // Receive messages from other activity
         val message_todo_title = intent.getStringExtra(EXTRA_TODO_TITLE)
@@ -65,4 +69,45 @@ class MainActivity : AppCompatActivity() {
 
         startActivity(intent)
     }
+
+    fun fetchJSON(){
+        println("fetchJSON")
+
+        val url = "https://wojtek-todo.herokuapp.com/api?query=query%20GetListItems%20%7B%0A%20%20listItems%20%7B%0A%20%20%20%20id%0A%20%20%20%20name%0A%20%20%20%20description%0A%20%20%20%20done%0A%20%20%20%20insertedAt%0A%20%20%7D%0A%7D&fbclid=IwAR2pmLmeK4pkaVPUjnjryt7brXJzy0cZGGvEVz-R-EoZJYRS7LuIE5eaJO0"
+        //val url = "https://api.letsbuildthatapp.com/youtube/home_feed"
+
+        val request = Request.Builder().url(url).build()
+
+        val client = OkHttpClient()
+        client.newCall(request).enqueue(object: Callback{
+
+            override fun onResponse(call: Call, response: Response) {
+                val body = response.body()?.string()
+                println(body)
+
+                val gson = GsonBuilder().create()
+
+                val homeFeed = gson.fromJson(body,HomeFeed::class.java)
+
+
+            }
+
+            override fun onFailure(call: Call, e: IOException) {
+                println("Failed to execute")
+            }
+        })
+    }
+
+}
+
+class HomeFeed(val data: JData){
+
+}
+
+class JData(val listItems: List<Item>){
+
+}
+
+class Item(val name: String, val insertedAt: String, val id: String, val done: Boolean, val description: String){
+
 }
